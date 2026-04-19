@@ -31,7 +31,6 @@ export default function History({ projects, onDelete, onStatusChange, onExport }
 
   return (
     <div className="space-y-5 animate-fade-in">
-      {/* Сводка */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: 'Всего проектов', val: projects.length, icon: 'FolderOpen', color: 'bg-blue-100 text-blue-600' },
@@ -53,13 +52,12 @@ export default function History({ projects, onDelete, onStatusChange, onExport }
         <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-4 flex items-center gap-3">
           <Icon name="TrendingUp" size={22} className="text-green-600 shrink-0" />
           <div>
-            <p className="font-semibold text-foreground">Выручка по завершённым заказам</p>
+            <p className="font-semibold text-foreground">Выручка по завершённым</p>
             <p className="text-2xl font-display font-black text-green-600">{fmt(totalRevenue)}</p>
           </div>
         </div>
       )}
 
-      {/* Список */}
       <div className="space-y-3">
         {[...projects].reverse().map(project => {
           const st = STATUS_LABELS[project.status];
@@ -72,7 +70,7 @@ export default function History({ projects, onDelete, onStatusChange, onExport }
                       <h3 className="font-semibold text-foreground truncate">{project.name}</h3>
                       <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${st.color}`}>{st.label}</span>
                     </div>
-                    <div className="flex items-center gap-3 mt-1 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-3 mt-1 text-sm text-muted-foreground flex-wrap">
                       {project.clientName && (
                         <span className="flex items-center gap-1">
                           <Icon name="User" size={12} />
@@ -96,7 +94,7 @@ export default function History({ projects, onDelete, onStatusChange, onExport }
                   </div>
                   <div className="text-right shrink-0">
                     <p className="font-display font-black text-xl text-primary">{fmt(project.totalCost)}</p>
-                    <p className="text-xs text-muted-foreground">{project.materials.length + project.hardware.length} позиций</p>
+                    <p className="text-xs text-muted-foreground">{project.lines.length} позиций</p>
                   </div>
                 </div>
               </div>
